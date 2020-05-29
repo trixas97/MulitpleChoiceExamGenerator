@@ -1,0 +1,183 @@
+DROP TABLE users;
+DROP TABLE lessons;
+DROP TABLE units;
+DROP TABLE questions;
+DROP TABLE answers;
+DROP TABLE tests;
+
+
+CREATE TABLE users(
+    username varchar(90) primary key,
+    password varchar(90),
+    surname varchar(90),
+    name varchar(90),
+    email varchar(90),
+    school varchar(90),
+    gender varchar(90),
+    birth varchar(90));
+
+CREATE TABLE lessons(
+
+    name varchar(90),
+
+    owner varchar(90),
+
+    PRIMARY KEY(name,owner),
+
+    CONSTRAINT fk_lessons_users
+
+        FOREIGN KEY (owner) REFERENCES users(username)
+
+        ON DELETE CASCADE
+
+	ON UPDATE CASCADE);
+
+CREATE TABLE units(
+
+    id int primary key AUTO_INCREMENT,
+
+    name varchar(90),
+
+    owner varchar(90),
+
+    lesson varchar(90),
+
+    CONSTRAINT fk_un_lessons
+
+        FOREIGN KEY (lesson,owner) REFERENCES lessons(name,owner)
+
+        ON DELETE CASCADE
+
+	ON UPDATE CASCADE);
+
+CREATE TABLE questions(
+
+    id int primary key AUTO_INCREMENT,
+
+    text varchar(90),
+
+    owner varchar(90),
+
+    lesson varchar(90),
+
+    unit_id int,
+
+    dif int,
+
+    CONSTRAINT fk_que_lessons
+
+        FOREIGN KEY (lesson,owner) REFERENCES lessons(name,owner)
+
+        ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+    CONSTRAINT fk_que_un
+
+        FOREIGN KEY (unit_id) REFERENCES units(id)
+
+        ON DELETE CASCADE
+
+	ON UPDATE CASCADE);
+
+CREATE TABLE answers(
+
+    id int primary key AUTO_INCREMENT,
+
+    text varchar(90),
+
+    id_q int,
+
+    correct boolean,
+
+    CONSTRAINT fk_ans_que
+
+        FOREIGN KEY (id_q) REFERENCES questions(id)
+
+        ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+
+CREATE TABLE tests(
+
+    id int,
+
+    id_q int,
+
+    owner varchar(90),
+
+    unit_id int,
+
+    lesson varchar(90),
+
+    primary key(id,id_q),
+
+    CONSTRAINT fk_test_que
+
+	FOREIGN KEY (id_q) REFERENCES questions(id)
+
+        ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+    CONSTRAINT fk_test_user
+
+	FOREIGN KEY (owner) REFERENCES users(username)
+
+        ON DELETE CASCADE
+	ON UPDATE CASCADE,
+
+    CONSTRAINT fk_test_lesson
+
+	FOREIGN KEY (lesson) REFERENCES lessons(name)
+
+        ON DELETE CASCADE
+	ON UPDATE CASCADE);
+
+
+
+
+insert into users values('trixas', 'pao', 'Τριχάκης', 'Μιχάλης', 'trixasmixas@gmail.com', 'ΤΕΙ ΘΕΣΣΑΛΟΝΙΚΗΣ', '’ντρας', '13/8/1997');
+
+insert into users values('tzel', 'paok', 'Τζελαλής', 'Παναγιώτης', 'p.tzel@gmail.com', 'ΤΕΙ ΘΕΣΣΑΛΟΝΙΚΗΣ', '’ντρας', '27/11/1997');
+
+insert into lessons values('Δίκτυα', 'trixas');
+
+insert into lessons values('Δομές Δεδομένων', 'tzel'); 
+
+insert into units values(NULL,'Επίπεδο Εφαρμογής', 'trixas', 'Δίκτυα');
+
+insert into units values(NULL,'Ουρές', 'tzel', 'Δομές Δεδομένων');
+
+insert into questions values(null,'Ερώτηση για το επίπεδο εφαρμογής','trixas','Δίκτυα',1,1);
+
+insert into questions values(null,'Τί είναι το FTP;','trixas','Δίκτυα',1,2);
+
+insert into questions values(null,'Τί είναι το SMTP;','trixas','Δίκτυα',1,1);
+
+insert into questions values(null,'Τί είναι το HTTP;','trixas','Δίκτυα',1,3);
+
+insert into questions values(null,'Ερώτηση για τις ουρές','tzel','Δομές Δεδομένων',2,1);
+
+insert into answers values(null, 'Σωστή απάντηση για επιπεδο εφαρμογής', 1, 1);
+
+insert into answers values(null, 'Λάθος απάντηση για επιπεδο εφαρμογής', 1, 0);
+
+insert into answers values(null, 'Σωστή απάντηση για ουρές', 4, 1);
+
+insert into answers values(null, 'Λάθος απάντηση για ουρές', 4, 0);
+
+insert into tests values (1,1,'trixas',1,'Δίκτυα');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

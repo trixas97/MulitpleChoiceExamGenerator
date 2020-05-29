@@ -1,0 +1,5 @@
+[0112/025738.625:ERROR:process_info.cc(329)] VirtualQueryEx: Δεν επιτρέπεται η πρόσβαση. (0x5)
+[0112/025738.627:ERROR:process_info.cc(550)] ReadMemoryInfo failed
+[0112/025738.632:ERROR:process_reader_win.cc(151)] SuspendThread: Δεν επιτρέπεται η πρόσβαση. (0x5)
+[0112/025738.632:ERROR:exception_snapshot_win.cc(88)] thread ID 2632 not found in process
+[0112/025738.632:ERROR:scoped_process_suspend.cc(40)] NtResumeProcess: Έγινε προσπάθεια πρόσβασης σε μια διεργασία εξόδου. (0xc000010a)

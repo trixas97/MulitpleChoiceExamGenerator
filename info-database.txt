@@ -1,0 +1,264 @@
+ΓΕΝΙΚΗ ΔΟΜΗ ΒΑΣΗΣ
+
+							users(Χρήστες)----------------------------------------|
+							     |						      |
+							     |						      |
+							     |						      |
+						        lessons(Μαθήματα)-------------------------------------|		
+							     |						      |
+							     |						      |
+							     |						      |
+							units(Ενότητες)------------------------------tests(Διαγωνισματα)
+							     |						      |
+							     |						      |
+							     |						      |
+							questions(Ερωτήσεις)----------------------------------|
+							     |
+							     |
+							     |
+							answers(Απαντήσεις)		
+
+
+
+
+
+
+
+ΜΕΘΟΔΟΙ ΑΡΧΕΙΟΥ database.php
+
+Για επεξεργασία δεδομένων: 
+
+-int uUser(string username, string surname, string name, string email, string school, string gender, string birth)
+	
+	Αυτή η μέθοδος υπάρχει για να γίνεται ενημέρωση(επεξεργασία) των στοιχείων του χρήστη
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+	-> Παράδειγμα χρήσης μεθόδου uUser() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+		
+		int check = db.uUnit("trixas","Τριχάκης","Μιχάλης","trixasmixas@gmail.com","ΤΕΙ ΘΕΣΣΑΛΟΝΙΚΗΣ","’ντρας","13/8/1997");
+		if(check == 1)
+			MessageBox.Show("Επιτυχής ενημέρωση στοιχείων");
+		else
+			MessageBox.Show("Απέτυχε η ενημέρωση στοιχείων");
+
+
+
+-int uLesson(string username, string newname, string oldname)
+	
+	Αυτή η μέθοδος υπάρχει για να γίνεται ενημέρωση(επεξεργασία) των στοιχείων ενός μαθήματος
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+	-> Παράδειγμα χρήσης μεθόδου uLesson() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+		
+		int check = db.uLesson("trixas","Δίκτυα","ΑΔΟΠΣΕ");
+		if(check == 1)
+			MessageBox.Show("Επιτυχής ενημέρωση στοιχείων");
+		else
+			MessageBox.Show("Απέτυχε η ενημέρωση στοιχείων");
+
+
+
+-int uUnit(string username, string lesson, string newname, string oldname)
+	
+	Αυτή η μέθοδος υπάρχει για να γίνεται ενημέρωση(επεξεργασία) των στοιχείων μιας ενότητας
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+	-> Παράδειγμα χρήσης μεθόδου uUnit() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+		
+		int check = db.uUnit("trixas","Δίκτυα","Επίπεδο Εφαρμογής","Επίπεδο Μεταφοράς");
+		if(check == 1)
+			MessageBox.Show("Επιτυχής ενημέρωση στοιχείων");
+		else
+			MessageBox.Show("Απέτυχε η ενημέρωση στοιχείων");
+
+
+
+-int int uQuestion(string username, string lesson, string unit, string newname, string oldname, List<string> newanswers, List<string> oldanswers)
+	
+	Αυτή η μέθοδος υπάρχει για να γίνεται ενημέρωση(επεξεργασία) των στοιχείων μιας ερώτησης και των απαντήσεών της
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+	-> Παράδειγμα χρήσης μεθόδου uQuestion() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση (Στο συγκεκριμενο παράδειγμα αλλαζει την ερωτηση απο "Τί είναι το FTP;" σε "Τί ειναι το DNS;" καθως και τις απαντήσεις από oldanswers σε newanswers
+		
+		List<string> oldanswers = new List<string>();
+            	List<string> newanswers = new List<string>();
+
+            	oldanswers.Add("Προτόκωλλο");
+            	oldanswers.Add("Κλαδευτήρι");
+            	oldanswers.Add("Ραβδιστικό");
+
+            	newanswers.Add("Προτόκωλλοpao");
+            	newanswers.Add("Κλαδευτήριpao");
+            	newanswers.Add("Ραβδιστικόpao");
+
+            	int check = db.uQuestion(user.ElementAt(0), "Δίκτυα", "Επίπεδο Εφαρμογής", "Τί είναι το DNS;", "Τί είναι το FTP;", newanswers, oldanswers);
+		if(check == 1)
+			MessageBox.Show("Επιτυχής ενημέρωση στοιχείων");
+		else
+			MessageBox.Show("Απέτυχε η ενημέρωση στοιχείων");
+
+
+Για εξαγωγή δεδομένων(δλδ να παρουμε τα δεδομενα): 
+
+-List<string> qLessons(string username)
+
+	Αυτή η μέθοδος υπάρχει για να πάρουμε ΟΛΑ τα μαθήματα ενός χρήστη
+
+	-> Επιστρέφει
+		null -> Υπήρξε καποιο σφάλμα και δεν πήρε τα δεδομένα
+		list not null -> Πήρες τα δεδομένα σωστά
+
+	-> Παράδειγμα χρήσης μεθόδου qLessons() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+		
+		List<string> lessons = new List<string>();
+		lessons = qLessons("trixas");
+
+
+
+-List<string> qUnits(string owner, string lesson)
+
+	Αυτή η μέθοδος υπάρχει για να πάρουμε ΟΛΕΣ τις ενότητες ενος χρήστη owner του μαθήματος lesson
+
+	-> Επιστρέφει
+		null -> Υπήρξε καποιο σφάλμα και δεν πήρε τα δεδομένα
+		list not null -> Πήρες τα δεδομένα σωστά
+
+	-> Παράδειγμα χρήσης μεθόδου qUnits() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+			
+		List<string> units = new List<string>();
+		units = qUnits("trixas","Δίκτυα");
+		
+	-> Παράδειγμα χρήσης μεθοδου qUnits() με συνδυασμό τα αποτελέσματα της qLessons()
+		List<string> lessons = new List<string();
+		lessons = qLessons("trixas");
+
+		List<string> units = new List<string>();
+		
+		for(int i=0; i < lessons.Count; i++)
+		{
+			units = qUnits("trixas",lesson(i));
+			Console.WriteLine(lesson.ElementAt(i));
+			for(int k=0; k < units.Count; k++)
+				Console.WriteLine("-->" + units.ElementAt(k));
+		}
+
+
+
+-List<string> qQuestions(string username, string lesson, string unit)
+
+	Αυτή η μέθοδος υπάρχει για να πάρουμε ΟΛΕΣ τις ερωτήσεις ενος χρήστη owner του μαθήματος lesson της ενότητας unit
+
+	-> Επιστρέφει
+		null -> Υπήρξε καποιο σφάλμα και δεν πήρε τα δεδομένα
+		list not null -> Πήρες τα δεδομένα σωστά
+
+	-> Παράδειγμα χρήσης μεθόδου qQuestions() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+			
+		List<string> questions = new List<string>();
+		questions = qQuestions("trixas","Δίκτυα","Επίπεδο Εφαρμογής");
+		
+
+
+-List<string> qAnswers(string question, string unit, string username, string lesson)
+
+	Αυτή η μέθοδος υπάρχει για να πάρουμε ΟΛΕΣ τις απαντήσεις μιας ερώτησης question, μιας ενότητας unit, ενος μαθήματος lesson, ενος χρήστη owner 
+
+	-> Επιστρέφει
+		null -> Υπήρξε καποιο σφάλμα και δεν πήρε τα δεδομένα
+		list not null -> Πήρες τα δεδομένα σωστά
+
+	-> Παράδειγμα χρήσης μεθόδου qAnswers() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+			
+		List<string> answers = new List<string>();
+		answers = qAnswers("Τί είναι το FTP","Επίπεδο Εφαρμογής","trixas","Δίκτυα");
+		
+		
+	-> Παράδειγμα χρήσης μεθοδου qAnswers() με συνδυασμό τα αποτελέσματα της qQuestions()
+		List<string> questions = new List<string();
+		questions = qQuestions("trixas","Δίκτυα","Επίπεδο Εφαρμογής");
+
+		List<string> answers = new List<string>();
+		
+		for(int i=0; i < questions.Count; i++)
+		{
+			answers = qAnswers(questions.ElementAt(i),"Επίπεδο Εφαρμογής","trixas","Δίκτυα");
+			Console.WriteLine(questions.ElementAt(i));
+			for(int k=0; k < answers.Count; k++)
+				Console.WriteLine("-->" + answers.ElementAt(k));
+		}
+
+
+
+Για εισαγωγή δεδομένων(δλδ να στείλουμε τα δεδομενα): 
+
+
+-int iQuestion(string username, string question, List<string> answers, string lesson, string unit, int dif)
+
+	Αυτή η μέθοδος υπάρχει για να γίνεται καταχώρηση(δημιουργία) μιας ερώτησης και των στοιχείων απαντήσεων της
+
+	-> Επιστρέφει εναν κωδικό
+	       -1 -> Δεν βρέθηκε η ενότητα unit
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+
+	-> Παράδειγμα χρήσης μεθόδου iQuestion() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+			
+		List<string> answers = new List<string>();
+
+		answers.add("Προτόκωλλο");
+		answers.add("Ραβδιστικό");
+		answers.add("Κλαδευτήρι");
+
+		int check = iQuestion("trixas","Τί είναι το FTP",answers,"Δίκτυα","Επίπεδο Εφαρμογής",1);
+
+
+
+
+-int iLesson(string username, string lesson)
+
+	Αυτή η μέθοδος υπάρχει για να γίνεται καταχώρηση(δημιουργια) ενός μαθήματος
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+
+	-> Παράδειγμα χρήσης μεθόδου iLesson() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+			
+		int check = iLesson("trixas","Δίκτυα");
+
+
+
+
+-int iUnit(string unit, string username, string lesson)
+
+	Αυτή η μέθοδος υπάρχει για να γίνεται καταχώρηση(δημιουργία) μιας ερώτησης και των στοιχείων απαντήσεων της
+
+	-> Επιστρέφει εναν κωδικό
+		0 -> Απέτυχε η σύνδεση με την βάση
+		1 -> Επιτυχής ενημέρωση στοιχείων
+		2 -> Κάποιο σφάλμα που πέταξε η sql (δες κονσολα για να δεις τι σφαλμα ειναι)
+
+
+	-> Παράδειγμα χρήσης μεθόδου iUnit() δεδομένο ότι υπάρχει το αντικείμενο db που υλοποιεί την σύνδεση με την βάση
+		
+		int check = iUnit("Επίπεδο Εφαρμογής","trixas","Δίκτυα");

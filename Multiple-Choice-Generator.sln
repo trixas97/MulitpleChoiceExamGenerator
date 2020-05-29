@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2048
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Multiple-Choice-Generator", "Multiple-Choice-Generator\Multiple-Choice-Generator.csproj", "{4E2CF2FF-9C6B-4F3F-827B-03D3155DEEB5}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "mceg-setup", "mceg-setup\mceg-setup.vdproj", "{D39A6A1F-AAFD-4C28-92D0-8DF6A204C6AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E2CF2FF-9C6B-4F3F-827B-03D3155DEEB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E2CF2FF-9C6B-4F3F-827B-03D3155DEEB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E2CF2FF-9C6B-4F3F-827B-03D3155DEEB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E2CF2FF-9C6B-4F3F-827B-03D3155DEEB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D39A6A1F-AAFD-4C28-92D0-8DF6A204C6AB}.Debug|Any CPU.ActiveCfg = Debug
+		{D39A6A1F-AAFD-4C28-92D0-8DF6A204C6AB}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67A2CF89-EAAB-4053-986E-12200B7ADFEF}
+	EndGlobalSection
+EndGlobal
